@@ -8,8 +8,8 @@ A serverless cloud application for scheduling and managing event/task reminders 
 
 - *AWS S3*: Static website hosting for the user interface  
 - *AWS Lambda*: Serverless backend to process reminder logic  
-- *API Gateway*: REST API for the frontend to submit events  
-- *DynamoDB*: Stores scheduled events and user data  
+- *API Gateway*: REST API for the frontend to submit event or task details  
+- *DynamoDB*: Stores scheduled events and user data like title, date&time, email  
 - *EventBridge*: Triggers Lambda every 5 minutes for timely notifications  
 - *Amazon SES*: Sends opt-in email reminders to users  
 
@@ -46,12 +46,8 @@ The app is designed using fully managed AWS services for scalability, security, 
    - Target: Reminder Lambda Function
 
 5. *Email Delivery:*  
-   - Set up SES, verify sender email/domain  
+   - Set up SES(sandbox mode), verify sender email/domain, reciever email  
    - Update Lambda to use SES for sending emails
-
-6. *Custom Domain (Optional):*  
-   - Map S3 static site to a custom domain using Route 53 or external DNS
-   - Attach ACM SSL certificate for HTTPS via CloudFront if needed
 
 ---
 
@@ -59,7 +55,8 @@ The app is designed using fully managed AWS services for scalability, security, 
 
 - Visit the hosted S3 website
 - Fill the form to schedule an event reminder
-- Receive an automated email at the scheduled time
+- Receive an automated email before 15 mintues of  scheduled time
+- Note: User's email must be verified in AWS SES(sandbox mode) for recieving the reminder mail
 
 ---
 
@@ -72,9 +69,6 @@ The app is designed using fully managed AWS services for scalability, security, 
 ![Project-UI](images/Project-UI.png)
 
 ##Sample Reminder Mail
-![sample-reminder-mail](images/sample-reminder-mail.jpg)
----
 
-## License
+![sample reminder mail.jpg](https://github.com/Srikanth-Reddy-01/Serverless-EventNotifier/blob/main/images/sample%20reminder%20mail.jpg)
 
-Open source for learning and demonstration purposes.
