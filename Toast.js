@@ -1,10 +1,5 @@
 // Toast display function
 
-// Load environment variables from the .env file
-require('dotenv').config();
-
-// Access the API key
-const apiKey = process.env.API_KEY;
 
 function showToast(message, type) {
     const toast = document.getElementById("toast");
@@ -40,7 +35,7 @@ document.getElementById("eventForm").addEventListener("submit", async function(e
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": apiKey
+            
             },
             body: JSON.stringify({
                 title: titleValue,
